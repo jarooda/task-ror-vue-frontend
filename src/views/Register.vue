@@ -13,7 +13,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       <p class="mt-3 text-sm">
-        Already have an account? Login
+        Already have an account? <a @click="toLogin" class="link">Login</a>
       </p>
     </form>
   </div>
@@ -45,6 +45,9 @@ export default {
       }).catch(({ response }) => {
         console.log(response.data)
       })
+    },
+    toLogin () {
+      this.$router.push({ name: 'Login' })
     }
   }
 }
