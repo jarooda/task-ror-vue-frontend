@@ -13,7 +13,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       <p class="mt-3 text-sm">
-        Don't have an account? Register first
+        Don't have an account? <a @click="toRegister" class="link">Register first</a>
       </p>
     </form>
   </div>
@@ -45,6 +45,9 @@ export default {
       }).catch(({ response }) => {
         console.log(response.data)
       })
+    },
+    toRegister () {
+      this.$router.push({ name: 'Register' })
     }
   }
 }

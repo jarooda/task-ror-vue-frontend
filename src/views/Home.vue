@@ -1,18 +1,46 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="bg-secondary min-vh-100">
+    <Navbar />
+    <div class="container w-100 grid pt-4">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <Form />
+        </div>
+        <div class="col-12 col-md-8">
+          <TaskCard  v-for="task in tasks" :key="task.id" :data="task" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Navbar from '@/components/Navbar.vue'
+import Form from '@/components/Form.vue'
+import TaskCard from '@/components/TaskCard.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Navbar,
+    Form,
+    TaskCard
+  },
+  methods: {
+    fetchTasks () {
+      this.$store.dispatch('FETCH_ALL')
+    }
+  },
+  computed: {
+    tasks () {
+      return this.$store.state.tasks
+    }
+  },
+  created () {
+    this.fetchTasks()
   }
 }
 </script>
+
+<style>
+</style>

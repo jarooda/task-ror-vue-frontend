@@ -1,3 +1,20 @@
+a {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
 .page-container {
   min-width: 100vw;
   min-height: 100vh;
