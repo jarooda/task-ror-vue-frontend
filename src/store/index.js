@@ -15,7 +15,11 @@ export default new Vuex.Store({
       priorities: 'low',
       due_date: ''
     },
-    isEdit: false
+    isEdit: false,
+    sortBy: {
+      order_by: '',
+      sort_direction: ''
+    }
   },
   mutations: {
     FETCH_ALL (state, payload) {
@@ -47,6 +51,9 @@ export default new Vuex.Store({
         }
       })
       state.tasks = temp
+    },
+    SET_SORT_BY (state, payload) {
+      state.sortBy = payload
     }
   },
   actions: {
@@ -138,5 +145,39 @@ export default new Vuex.Store({
     }
   },
   modules: {
+  },
+  getters: {
+    orderedTasks: (state) => {
+      const key = state.sortBy.order_by
+      const order = state.sortBy.sort_direction
+      if (order && key) {
+        return state.tasks.sort((a, b) => {
+          const varA = (typeof a[key] === 'string')
+            ? a[key].toUpperCase() : a[key]
+          const varB = (typeof b[key] === 'string')
+            ? b[key].toUpperCase() : b[key]
+
+          let comparison = 0
+          if (varA > varB) {
+            comparison = 1
+          } else if (varA < varB) {
+            comparison = -1
+          }
+          return (
+            (order === 'desc') ? (comparison * -1) : comparison
+          )
+        })
+      } else {
+        return state.tasks.sort((a, b) => {
+          if (a.due_date < b.due_date) {
+            return -1
+          } else if (a.due_date > b.due_date) {
+            return 1
+          } else {
+            return 0
+          }
+        })
+      }
+    }
   }
 })
