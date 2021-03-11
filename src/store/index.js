@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '../config/axios'
+import { isEqual } from 'date-fns'
 
 Vue.use(Vuex)
 
@@ -178,6 +179,15 @@ export default new Vuex.Store({
           }
         })
       }
+    },
+    tasksDueToday: (state) => {
+      return state.tasks.filter(task => {
+        const rawDate = new Date().toISOString().split('T')[0]
+        const today = new Date(rawDate)
+        const taskDate = new Date(task.due_date)
+
+        return isEqual(today, taskDate) && !task.status
+      })
     }
   }
 })
