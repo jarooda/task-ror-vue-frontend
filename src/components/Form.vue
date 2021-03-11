@@ -1,45 +1,47 @@
 <template>
-  <form @submit.prevent="submitForm" class="form-container p-3 bg-white rounded-lg text-center mb-4">
-    <h3 v-if="isEdit">Edit Task</h3>
-    <h3 v-else>Add Task</h3>
-    <div class="form-group">
-      <label class="font-weight-bold">Title</label>
-      <input type="text" class="form-control" placeholder="Title" v-model="title">
-    </div>
-    <div class="form-group">
-      <label class="font-weight-bold">Description</label>
-      <textarea class="form-control" cols="10" rows="3" placeholder="Description" v-model="description" />
-    </div>
-    <div class="form-group">
-      <label class="font-weight-bold">Status</label>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" :value="true" v-model="status">
-          Done
-        </label>
+  <form @submit.prevent="submitForm">
+    <div class="form-container p-3 bg-white rounded-lg text-center mb-4">
+      <h3 v-if="isEdit">Edit Task</h3>
+      <h3 v-else>Add Task</h3>
+      <div class="form-group">
+        <label class="font-weight-bold">Title</label>
+        <input type="text" class="form-control" placeholder="Title" v-model="title">
       </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" :value="false"  v-model="status">
-          Not Done
-        </label>
+      <div class="form-group">
+        <label class="font-weight-bold">Description</label>
+        <textarea class="form-control" cols="10" rows="3" placeholder="Description" v-model="description" />
       </div>
-    </div>
-    <div class="form-group">
-      <label class="font-weight-bold">Priorities</label>
-      <select class="custom-select" v-model="priorities">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="urgent">Urgent</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="font-weight-bold">Due Date</label>
-      <input type="date" class="form-control" placeholder="Due Date" v-model="due_date">
-    </div>
-    <div class="flex-column-reverse flex-md-row-reverse d-flex">
-      <button type="submit" class="btn btn-primary m-2">{{ isEdit ? "Edit Task" : "Add Task" }}</button>
-      <button class="btn-warning btn m-2" type="button" @click="clearForm">{{ isEdit ? "Cancel" : "Clear" }}</button>
+      <div class="form-group">
+        <label class="font-weight-bold">Status</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" :value="true" v-model="status">
+            Done
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" :value="false"  v-model="status">
+            Not Done
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Priorities</label>
+        <select class="custom-select" v-model="priorities">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Due Date</label>
+        <input type="date" class="form-control" placeholder="Due Date" v-model="due_date">
+      </div>
+      <div class="flex-column-reverse flex-md-row-reverse d-flex">
+        <button type="submit" class="btn btn-primary m-2">{{ isEdit ? "Edit Task" : "Add Task" }}</button>
+        <button class="btn-warning btn m-2" type="button" @click="clearForm">{{ isEdit ? "Cancel" : "Clear" }}</button>
+      </div>
     </div>
   </form>
 </template>
