@@ -89,8 +89,7 @@ export default new Vuex.Store({
         url: `/api/v1/tasks/${payload}`,
         headers: {
           Authorization: `Bearer ${token}`
-        },
-        data: payload
+        }
       }).then(({ data }) => {
         context.commit('DELETE_TASK', payload)
       }).catch((err) => {
@@ -106,7 +105,31 @@ export default new Vuex.Store({
         headers: {
           Authorization: `Bearer ${token}`
         },
-        data: payload
+        data: {
+          title: payload.title,
+          description: payload.description,
+          status: payload.status,
+          priorities: payload.priorities,
+          due_date: payload.due_date
+        }
+      }).then(({ data }) => {
+        context.commit('EDIT_TASK', data)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    EDIT_TASK_STATUS (context, payload) {
+      const token = localStorage.getItem('access_token')
+      console.log(payload)
+      axios({
+        method: 'patch',
+        url: `/api/v1/tasks/${payload.id}`,
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        data: {
+          status: payload.status
+        }
       }).then(({ data }) => {
         context.commit('EDIT_TASK', data)
       }).catch((err) => {

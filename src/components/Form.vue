@@ -29,17 +29,17 @@
       <label class="font-weight-bold">Priorities</label>
       <select class="custom-select" v-model="priorities">
         <option value="low">Low</option>
-        <option value="normal">Normal</option>
-        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="urgent">Urgent</option>
       </select>
     </div>
     <div class="form-group">
       <label class="font-weight-bold">Due Date</label>
       <input type="date" class="form-control" placeholder="Due Date" v-model="due_date">
     </div>
-    <div class="flex justify-around container">
-      <button class="btn-warning btn" type="button" @click="clearForm">{{ isEdit ? "Cancel" : "Clear" }}</button>
-      <button type="submit" class="btn btn-primary">{{ isEdit ? "Edit Task" : "Add Task" }}</button>
+    <div class="flex-column-reverse flex-md-row-reverse d-flex">
+      <button type="submit" class="btn btn-primary m-2">{{ isEdit ? "Edit Task" : "Add Task" }}</button>
+      <button class="btn-warning btn m-2" type="button" @click="clearForm">{{ isEdit ? "Cancel" : "Clear" }}</button>
     </div>
   </form>
 </template>
