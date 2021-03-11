@@ -7,7 +7,7 @@
       <blockquote class="blockquote mb-0">
         <p>{{ data.description }}</p>
         <footer class="blockquote-footer">
-          <span class="badge badge-success">{{ data.status ? "Done" : "Not Done" }}</span> || <span class="badge badge-primary">Priorities: {{ data.priorities }}</span> || <span class="badge badge-info">Due Date: {{ indoFormatDate }}</span>
+          <span class="badge badge-success">{{ data.status ? "Done" : "Not Done" }}</span> || <span class="badge badge-primary">Priorities: {{ data.priorities.toUpperCase() }}</span> || <span class="badge badge-info">Due Date: {{ indoFormatDate }}</span>
         </footer>
         <div class="mt-2 d-flex flex-column-reverse flex-md-row-reverse">
           <button class="btn btn-danger m-2" @click="destroy">Delete</button>

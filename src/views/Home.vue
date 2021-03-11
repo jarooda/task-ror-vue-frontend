@@ -1,6 +1,7 @@
 <template>
   <div class="bg-secondary min-vh-100">
     <Navbar />
+    <Alert v-for="task in tasksDueToday" :key="task.id" :data="task"/>
     <div class="container w-100 grid pt-4">
       <div class="row">
         <div class="col-12 col-md-4">
@@ -8,7 +9,7 @@
         </div>
         <div class="col-12 col-md-8">
           <SortingForm />
-          <TaskCard  v-for="task in tasks" :key="task.id" :data="task" />
+          <TaskCard v-for="task in tasks" :key="task.id" :data="task" />
         </div>
       </div>
     </div>
@@ -20,6 +21,7 @@ import Navbar from '@/components/Navbar.vue'
 import Form from '@/components/Form.vue'
 import TaskCard from '@/components/TaskCard.vue'
 import SortingForm from '@/components/SortingForm.vue'
+import Alert from '@/components/Alert.vue'
 
 export default {
   name: 'Home',
@@ -27,7 +29,8 @@ export default {
     Navbar,
     Form,
     TaskCard,
-    SortingForm
+    SortingForm,
+    Alert
   },
   methods: {
     fetchTasks () {
@@ -37,6 +40,9 @@ export default {
   computed: {
     tasks () {
       return this.$store.getters.orderedTasks
+    },
+    tasksDueToday () {
+      return this.$store.getters.tasksDueToday
     }
   },
   created () {
